@@ -10,7 +10,7 @@ env:
   CLUSTER_NAME: naveen-crud-app
   SERVICE_NAME: nave-crud-v1
   TASK_DEF_NAME: naveen-my-crud
-  CONTAINER_NAME: my-app
+  CONTAINER_NAME: nave-app
 
 jobs:
   deploy:
@@ -51,8 +51,12 @@ jobs:
         id: register-task-def
         run: |
           echo "Updating container image in task definition..."
-          NEW_TASK_DEF=$(jq --arg IMAGE "$IMAGE_URI" --arg NAME "${{ env.CONTAINER_NAME }}" \
-            '.taskDefinition.containerDefinitions |= map(
+          IMAGE_URI="${{ env.IMAGE_URI }}"
+          CONTAINER_NAME="${{ env.CONTAINER_NAME }}"
+
+          NEW_TASK_DEF=$(jq --arg IMAGE "$IMAGE_URI" --arg NAME "$CONTAINER_NAME" \
+            '
+            .taskDefinition.containerDefinitions |= map(
               if .name == $NAME then .image = $IMAGE else . end
             ) |
             {
@@ -61,10 +65,13 @@ jobs:
               containerDefinitions: .taskDefinition.containerDefinitions,
               requiresCompatibilities: .taskDefinition.requiresCompatibilities,
               cpu: .taskDefinition.cpu,
-              memory: .taskDefinition.memory,
-              executionRoleArn: .taskDefinition.executionRoleArn,
-              taskRoleArn: .taskDefinition.taskRoleArn
-            }' task-def.json)
+              memory: .taskDefinition.memory
+            }
+            + 
+            (if .taskDefinition.executionRoleArn != null then {executionRoleArn: .taskDefinition.executionRoleArn} else {} end)
+            + 
+            (if .taskDefinition.taskRoleArn != null then {taskRoleArn: .taskDefinition.taskRoleArn} else {} end)
+            ' task-def.json)
 
           echo "$NEW_TASK_DEF" > new-task-def.json
 
