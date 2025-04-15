@@ -16,8 +16,6 @@ COPY . .
 # Run build (assumes you have a build script in package.json)
 RUN npm run build
 
-# Optionally initialize the project (if needed, usually not in Docker)
-# Skipping `npm init` because it's interactive and usually done before Dockerizing
 
 # Start the app (optional in build stage, usually done in the final stage)
 CMD ["npm", "start"]
