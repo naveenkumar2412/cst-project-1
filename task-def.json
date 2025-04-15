@@ -7,7 +7,7 @@
   "memory": "512",
   "containerDefinitions": [
     {
-      "name": "my-app",
+      "name": "nave-app",
       "image": "011528270926.dkr.ecr.us-east-1.amazonaws.com/naveen-crud-app:latest",
       "essential": true,
       "portMappings": [
