@@ -86,6 +86,5 @@
     },
     "registeredAt": "2025-04-15T07:03:19.729Z",
     "registeredBy": "arn:aws:iam::011528270926:user/naveenkumar",
-    "enableFaultInjection": false,
     "tags": []
 }
