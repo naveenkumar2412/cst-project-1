@@ -1,0 +1,21 @@
+{
+  "family": "my-task-def",
+  "executionRoleArn": "arn:aws:iam::011528270926:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "my-app",
+      "image": "011528270926.dkr.ecr.us-east-1.amazonaws.com/naveen-crud-app:latest:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}
