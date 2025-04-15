@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: naveen-crud-app           # set this to your Amazon ECR repository name
   ECS_SERVICE: nave-crud-v1                 # set this to your Amazon ECS service name
   ECS_CLUSTER: naveen-crud-app                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: naveen-my-crud # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: task-def.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: nave-app           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
@@ -77,13 +77,13 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-    - name: Deploy to ECS
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: naveen-my-crud  # <- Must be a valid, already registered task def in ECS
-        service: nave-crud-v1
-        cluster: naveen-crud-app
-
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
