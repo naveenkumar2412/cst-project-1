@@ -14,5 +14,5 @@ RUN npm install
 COPY . ./
 COPY --from=build /app/build ./build
 
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm", "start"]
