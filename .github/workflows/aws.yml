@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: ap-south-1                  # Preferred AWS region
   ECR_REPOSITORY: naveen-ecr-repo # Amazon ECR repository name
-  ECS_SERVICE: nave-service-v         # Amazon ECS service name
+  ECS_SERVICE: naveen-service-v         # Amazon ECS service name
   ECS_CLUSTER: naveen-crud-app          # Amazon ECS cluster name
   ECS_TASK_DEFINITION: task-def.json # Path to task definition file
   CONTAINER_NAME: nave-container           # Container name in task definition
@@ -53,7 +53,6 @@ jobs:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
-        container-port: 80
 
 
     - name: Deploy Updated Task Definition to Amazon ECS
