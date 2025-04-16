@@ -53,7 +53,12 @@ jobs:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
+<<<<<<< HEAD
         
+=======
+        container-port: 80
+
+>>>>>>> dccae3c (done)
     - name: Deploy Updated Task Definition to Amazon ECS
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
