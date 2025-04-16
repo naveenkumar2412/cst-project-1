@@ -61,7 +61,7 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
-        timeout: 600 # Increased timeout to handle delays in stabilization
+        #timeout: 600  Increased timeout to handle delays in stabilization
 
     - name: Verify Deployment Status
       run: |
