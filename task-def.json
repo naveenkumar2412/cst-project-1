@@ -1,59 +1,24 @@
 {
-<<<<<<< HEAD
-  "taskDefinitionArn": "arn:aws:ecs:ap-south-1:011528270926:task-definition/nave-crud-task:1",
-  "containerDefinitions": [
-    {
-      "name": "nave-container",
-      "image": "011528270926.dkr.ecr.ap-south-1.amazonaws.com/nave-crud-app:latest",
-      "cpu": 2048,
-      "memory": 4096,
-      "portMappings": [
-=======
     "taskDefinitionArn": "arn:aws:ecs:ap-south-1:011528270926:task-definition/nave-crud-task:5",
     "containerDefinitions": [
->>>>>>> 4a6dea5 (done)
         {
-          "containerPort": 3000,
-          "hostPort": 3000,
-          "protocol": "tcp"
+            "name": "nave-container",
+            "image": "PLACEHOLDER",
+            "cpu": 2048,
+            "memory": 4096,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
         }
-<<<<<<< HEAD
-      ],
-      "essential": true,
-      "environment": [],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "systemControls": []
-    }
-  ],
-  "family": "nave-crud-task",
-  "executionRoleArn": "arn:aws:iam::011528270926:role/ecsTaskExecutionRole",
-  "networkMode": "awsvpc",
-  "revision": 1,
-  "volumes": [],
-  "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2",
-    "FARGATE"
-  ],
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
-  "cpu": "2048",
-  "memory": "4096",
-  "registeredAt": "2025-04-16T05:24:30.922Z",
-  "registeredBy": "arn:aws:iam::011528270926:user/naveenkumar",
-  "tags": []
-=======
     ],
     "family": "nave-crud-task",
     "executionRoleArn": "arn:aws:iam::011528270926:role/ecsTaskExecutionRole",
@@ -82,5 +47,4 @@
     "registeredAt": "2025-04-16T08:20:30.162Z",
     "registeredBy": "arn:aws:iam::011528270926:user/naveenkumar",
     "tags": []
->>>>>>> 4a6dea5 (done)
 }
